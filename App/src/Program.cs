@@ -58,19 +58,24 @@ namespace setcalc
             Console.WriteLine();
 
             Console.Write("Ā = ");
-            WriteNumbers(a.Inverted());
+            WriteNumbers(a.Inverted);
 
             Console.Write("A ∪ B = ");
             WriteNumbers(Set<int>.Union(a, b));
 
             Console.Write("A ∩ B = ");
-            WriteNumbers(Set<int>.Intersect(a, b));
+            WriteNumbers(Set<int>.Intersection(a, b));
 
             Console.Write("A ⊂ B = ");
             Console.WriteLine(a.IsSubsetOf(b));
 
             Console.Write("B ⊂ A = ");
             Console.WriteLine(b.IsSubsetOf(a));
+
+            /*foreach (var pair in a.Relations)
+            {
+                Console.Write($"{pair},");
+            }*/
 
             Console.WriteLine();
             Main(args);

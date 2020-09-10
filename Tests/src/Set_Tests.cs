@@ -86,7 +86,7 @@ namespace Tests
             b.Include(1, 2);
             a.Include(2);
 
-            var c = Set<int>.Intersect(a, b);
+            var c = Set<int>.Intersection(a, b);
 
             Assert.AreEqual(1, c.Count);
             Assert.That(c, Is.EquivalentTo(new[] {2}));
@@ -97,7 +97,7 @@ namespace Tests
         {
             a.Include(1, 2);
             
-            var inv = a.Inverted();
+            var inv = a.Inverted;
             
             Assert.That(inv, Is.EquivalentTo(new []{3, 4}));
         }

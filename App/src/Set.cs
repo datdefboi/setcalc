@@ -96,14 +96,22 @@ public class Set<T> : IEnumerable<T>
         return repeatedCount;
     }
 
-    public Set<T> Inverted()
+    public Set<T> Inverted
     {
-        var ns = GetEmptySubset();
-        ns._set = _set.Select(p => !p).ToArray();
-        ns.Count = _uniCount - Count;
-        return ns;
+        get
+        {
+            var ns = GetEmptySubset();
+            ns._set = _set.Select(p => !p).ToArray();
+            ns.Count = _uniCount - Count;
+            return ns;
+        }
     }
 
+    public IEnumerable<(T, T)> Relations =>
+        Enumerate().SelectMany(f =>
+            Enumerate().Select(s => (f, s))
+        );
+    
     #endregion
 
     #region Interops
@@ -131,8 +139,8 @@ public class Set<T> : IEnumerable<T>
         ns.Count = ns._set.Count(p => p);
         return ns;
     }
-    
-    public static Set<T> Intersect(Set<T> set1, Set<T> set2)
+
+    public static Set<T> Intersection(Set<T> set1, Set<T> set2)
     {
         var ns = set1.GetEmptySubset();
         ns._set = set1._set
