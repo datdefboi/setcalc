@@ -10,7 +10,7 @@ namespace setcalc
         static IEnumerable<int> ReadNumbers()
         {
             var s = Console.ReadLine();
-            return s.Split(' ').Select(int.Parse);
+            return s.Trim().Split(' ').Select(int.Parse);
         }
 
         static void WriteNumbers(IEnumerable<int> ints)
@@ -19,6 +19,8 @@ namespace setcalc
             {
                 Console.Write($"{i},");
             }
+
+            Console.WriteLine();
         }
 
         static void Main(string[] args)
@@ -52,10 +54,23 @@ namespace setcalc
             {
                 Console.WriteLine("B are out of range of U");
             }
+            
+            Console.WriteLine();
 
             Console.Write("Ā = ");
-            a.Invert();
-            WriteNumbers(a);
+            WriteNumbers(a.Inverted());
+
+            Console.Write("A ∪ B = ");
+            WriteNumbers(Set<int>.Union(a, b));
+            
+            Console.Write("A ∩ B = ");
+            WriteNumbers(Set<int>.Intersect(a, b));
+
+            Console.Write("A ⊂ B = ");
+            Console.WriteLine(a.IsSubsetOf(b));
+            
+            Console.Write("B ⊂ A = ");
+            Console.WriteLine(b.IsSubsetOf(a));
             
             Console.WriteLine();
             Main(args);

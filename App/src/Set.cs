@@ -95,11 +95,13 @@ public class Set<T> : IEnumerable<T>
 
         return repeatedCount;
     }
-    
-    public void Invert()
+
+    public Set<T> Inverted()
     {
-        _set = _set.Select(p => !p).ToArray();
-        Count = _uniCount - Count;
+        var ns = GetEmptySubset();
+        ns._set = _set.Select(p => !p).ToArray();
+        ns.Count = _uniCount - Count;
+        return ns;
     }
 
     #endregion
@@ -110,32 +112,35 @@ public class Set<T> : IEnumerable<T>
     {
         return new Set<T>(_uni);
     }
-    
-    public void UnionWith(Set<T> set)
+
+    public bool IsSubsetOf(Set<T> set) => _set
+        .Zip(set._set, (s1, s2) => (s1, s2))
+        .All(p => !p.s1 || p.s2) && Count != set.Count;
+
+    #endregion
+
+    #region binops
+
+    public static Set<T> Union(Set<T> set1, Set<T> set2)
     {
-        _set = _set
-            .Zip(set._set, (s1, s2) => (s1, s2))
+        var ns = set1.GetEmptySubset();
+        ns._set = set1._set
+            .Zip(set2._set, (s1, s2) => (s1, s2))
             .Select(p => p.s1 || p.s2)
             .ToArray();
-        Count = _set.Count(p => p);
+        ns.Count = ns._set.Count(p => p);
+        return ns;
     }
     
-    public void IntersectWith(Set<T> set)
+    public static Set<T> Intersect(Set<T> set1, Set<T> set2)
     {
-        _set = _set
-            .Zip(set._set, (s1, s2) => (s1, s2))
+        var ns = set1.GetEmptySubset();
+        ns._set = set1._set
+            .Zip(set2._set, (s1, s2) => (s1, s2))
             .Select(p => p.s1 && p.s2)
             .ToArray();
-        Count = _set.Count(p => p);
-    }
-    
-    public void IsSubsetOf(Set<T> set)
-    {
-        _set = _set
-            .Zip(set._set, (s1, s2) => (s1, s2))
-            .Select(p => p.s1 && p.s2)
-            .ToArray();
-        Count = _set.Count(p => p);
+        ns.Count = ns._set.Count(p => p);
+        return ns;
     }
 
     #endregion
