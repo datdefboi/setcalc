@@ -29,7 +29,7 @@ namespace setcalc
             var u = ReadNumbers().Distinct();
 
             var a = new Set<int>(u);
-            var b = a.GetEmptySubset();
+            var b = new Set<int>(u);
 
             try
             {
@@ -54,7 +54,7 @@ namespace setcalc
             {
                 Console.WriteLine("B are out of range of U");
             }
-            
+
             Console.WriteLine();
 
             Console.Write("Ā = ");
@@ -62,16 +62,16 @@ namespace setcalc
 
             Console.Write("A ∪ B = ");
             WriteNumbers(Set<int>.Union(a, b));
-            
+
             Console.Write("A ∩ B = ");
             WriteNumbers(Set<int>.Intersect(a, b));
 
             Console.Write("A ⊂ B = ");
             Console.WriteLine(a.IsSubsetOf(b));
-            
+
             Console.Write("B ⊂ A = ");
             Console.WriteLine(b.IsSubsetOf(a));
-            
+
             Console.WriteLine();
             Main(args);
         }
