@@ -101,6 +101,13 @@ namespace Tests
             
             Assert.That(inv, Is.EquivalentTo(new []{3, 4}));
         }
+
+        [Test]
+        public void ReturnsValidFutures()
+        {
+            a.Include(1,2);
+            Assert.That(a.Futures, Is.EquivalentTo(new []{1,1,0,0}));
+        }
         
         [Test]
         public void FoundsSubsets()

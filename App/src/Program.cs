@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace setcalc
 {
@@ -13,18 +14,30 @@ namespace setcalc
             return s.Trim().Split(' ').Select(int.Parse);
         }
 
-        static void WriteNumbers(IEnumerable<int> ints)
+        static string IterableToString<T>(IEnumerable<T> ints)
         {
+            var sb = new StringBuilder();
+            sb.Append("[");
             foreach (var i in ints)
             {
-                Console.Write($"{i},");
+                sb.Append($"{i},");
             }
 
-            Console.WriteLine();
+            sb.Append("]");
+            sb.Remove(sb.Length - 2, 1);
+
+            return sb.ToString();
+        }
+
+        static void WriteSet<T>(Set<T> set)
+        {
+            Console.Write($"{IterableToString(set)} (future vec {IterableToString(set.Futures)})\n");
         }
 
         static void Main(string[] args)
         {
+            Console.WriteLine("HOW TO USE: insert each numbers separated by space.");
+            
             Console.Write("U = ");
             var u = ReadNumbers().Distinct();
 
@@ -35,6 +48,7 @@ namespace setcalc
             {
                 Console.Write("A = ");
                 var same = a.Include(ReadNumbers().ToArray());
+                WriteSet(a);
                 if (same != 0)
                     Console.WriteLine($"*warning* found {same} elements");
             }
@@ -47,6 +61,7 @@ namespace setcalc
             {
                 Console.Write("B = ");
                 var same = b.Include(ReadNumbers().ToArray());
+                WriteSet(b);
                 if (same != 0)
                     Console.WriteLine($"*warning* found {same} elements");
             }
@@ -57,25 +72,22 @@ namespace setcalc
 
             Console.WriteLine();
 
-            Console.Write("Ā = ");
-            WriteNumbers(a.Inverted);
+            Console.Write("^A = ");
+            WriteSet(a.Inverted);
 
-            Console.Write("A ∪ B = ");
-            WriteNumbers(Set<int>.Union(a, b));
+            Console.Write("A v B = ");
+            var union = Set<int>.Union(a, b);
+            WriteSet(union);
 
-            Console.Write("A ∩ B = ");
-            WriteNumbers(Set<int>.Intersection(a, b));
+            Console.Write("A ^ B = ");
+            var inter = Set<int>.Intersection(a, b);
+            WriteSet(inter);
 
-            Console.Write("A ⊂ B = ");
+            Console.Write("A c B = ");
             Console.WriteLine(a.IsSubsetOf(b));
 
-            Console.Write("B ⊂ A = ");
+            Console.Write("B c A = ");
             Console.WriteLine(b.IsSubsetOf(a));
-
-            /*foreach (var pair in a.Relations)
-            {
-                Console.Write($"{pair},");
-            }*/
 
             Console.WriteLine();
             Main(args);

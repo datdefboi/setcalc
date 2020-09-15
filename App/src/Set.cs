@@ -9,6 +9,8 @@ public class Set<T> : IEnumerable<T>
     private int _uniCount = 0;
     private bool[] _set;
 
+    public IEnumerable<int> Futures => _set.Select(p => p ? 1 : 0);
+
     public int Count { get; private set; }
 
     public Set(IEnumerable<T> uni)
