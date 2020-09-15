@@ -109,11 +109,33 @@ public class Set<T> : IEnumerable<T>
         }
     }
 
+    public IEnumerable<(T value, bool isActive)> ActivityPairs => _set.Select((v, i) => (_uni[i], v));
+
     public IEnumerable<(T, T)> Relations =>
         Enumerate().SelectMany(f =>
             Enumerate().Select(s => (f, s))
         );
     
+    public void FlipElement(T name)
+    {
+        var i = _uni.IndexOf(name);
+        _set[i] = !_set[i];
+    }
+
+    public void IncludeUniversum()
+    {
+        _set = _set.Select((o) => true).ToArray();
+    }
+
+    public void Randomize()
+    {
+        var random = new Random();
+        _set = _set.Select(v => random.NextDouble() > 0.5).ToArray();
+    }
+
+    public bool this[int i] => _set[i];
+    public bool this[T id] => _set[_uni.IndexOf(id)];
+
     #endregion
 
     #region Interops
@@ -131,24 +153,43 @@ public class Set<T> : IEnumerable<T>
 
     #region binops
 
-    public static Set<T> Union(Set<T> set1, Set<T> set2)
+    public static Set<T> Union(params Set<T>[] sets)
     {
-        var ns = set1.GetEmptySubset();
-        ns._set = set1._set
-            .Zip(set2._set, (s1, s2) => (s1, s2))
-            .Select(p => p.s1 || p.s2)
-            .ToArray();
+        if(sets.Length == 0)
+            throw new ArgumentNullException();
+        if (sets.Length == 1)
+            return sets.First();
+        
+        var ns = sets.First().GetEmptySubset();
+
+        foreach (var s in sets)
+        {
+            ns._set = ns._set
+                .Zip(s._set, (s1, s2) => (s1, s2))
+                .Select(p => p.s1 || p.s2)
+                .ToArray();
+        }
         ns.Count = ns._set.Count(p => p);
         return ns;
     }
 
-    public static Set<T> Intersection(Set<T> set1, Set<T> set2)
+    public static Set<T> Intersection(params Set<T>[] sets)
     {
-        var ns = set1.GetEmptySubset();
-        ns._set = set1._set
-            .Zip(set2._set, (s1, s2) => (s1, s2))
-            .Select(p => p.s1 && p.s2)
-            .ToArray();
+        if(sets.Length == 0)
+            throw new ArgumentNullException();
+        if (sets.Length == 1)
+            return sets.First();
+        
+        var ns = sets.First().GetEmptySubset();
+        ns.IncludeUniversum();
+
+        foreach (var s in sets)
+        {
+            ns._set = ns._set
+                .Zip(s._set, (s1, s2) => (s1, s2))
+                .Select(p => p.s1 && p.s2)
+                .ToArray();
+        }
         ns.Count = ns._set.Count(p => p);
         return ns;
     }

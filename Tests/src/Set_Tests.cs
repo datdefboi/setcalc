@@ -106,6 +106,7 @@ namespace Tests
         public void ReturnsValidFutures()
         {
             a.Include(1,2);
+            
             Assert.That(a.Futures, Is.EquivalentTo(new []{1,1,0,0}));
         }
         

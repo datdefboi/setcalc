@@ -7,4 +7,20 @@
     <LangVersion>preview</LangVersion>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="artefact\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="artefact\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="artefact\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+  </ItemGroup>
+
 </Project>
