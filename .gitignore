@@ -1,9 +1,2 @@
-﻿
-/RelationsApp/artifacts/
-/RelationsApp/bin/
-/RelationsApp/obj/
-/App/artefact/
-/App/bin/
-/App/obj/
-/Shared/bin/
-/Shared/obj/
+﻿/**/bin/
+/**/obj/
