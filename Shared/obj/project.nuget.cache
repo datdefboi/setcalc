@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "r3SJydrde7j42yUPKTZwnexey06IPdBTYnnc1hiZjVwLrx0esbB7O0I0A/V9x2xmISpJqn8I+8iKL25M/7UhQw==",
+  "dgSpecHash": "/mG5gjJdN6f1V2HXJsFMJFnGLzEQHF4iDmT/fF7mJ0fUwRM070B2rU3YkC88UPkiZMMMlveciKR/+Qefn05YiA==",
   "success": true,
   "projectFilePath": "C:\\Users\\datde\\Repositories\\setcalc\\Shared\\Shared.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\datde\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\5.0.0-rc.1.20451.14\\microsoft.netcore.app.runtime.win-x64.5.0.0-rc.1.20451.14.nupkg.sha512",
+    "C:\\Users\\datde\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\5.0.0-rc.1.20452.2\\microsoft.windowsdesktop.app.runtime.win-x64.5.0.0-rc.1.20452.2.nupkg.sha512",
+    "C:\\Users\\datde\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\5.0.0-rc.1.20451.17\\microsoft.aspnetcore.app.runtime.win-x64.5.0.0-rc.1.20451.17.nupkg.sha512"
+  ],
   "logs": []
 }

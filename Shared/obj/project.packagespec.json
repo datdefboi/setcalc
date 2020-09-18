@@ -7,13 +7,13 @@
     "outputPath": "C:\\Users\\datde\\Repositories\\setcalc\\Shared\\obj\\",
     "projectStyle": "PackageReference",
     "originalTargetFrameworks": [
-      "netstandard2.1"
+      "netcoreapp5.0"
     ],
     "sources": {
       "https://api.nuget.org/v3/index.json": {}
     },
     "frameworks": {
-      "netstandard2.1": {
+      "netcoreapp5.0": {
         "projectReferences": {}
       }
     },
@@ -24,7 +24,7 @@
     }
   },
   "frameworks": {
-    "netstandard2.1": {
+    "netcoreapp5.0": {
       "imports": [
         "net461",
         "net462",
@@ -36,7 +36,7 @@
       "assetTargetFallback": true,
       "warn": true,
       "frameworkReferences": {
-        "NETStandard.Library": {
+        "Microsoft.NETCore.App": {
           "privateAssets": "all"
         }
       },
