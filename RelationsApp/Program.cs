@@ -172,9 +172,9 @@ namespace RelationsApp
                 RenderTable();
                 RenderAgenda();
                 Write("Г(Х) = ");
-                ShowGalua(relationsDirect, colLabels, yActivity);
+                ShowGalua(relationsDirect, rowLabels, yActivity);
                 Write("Г^(Х) = ");
-                ShowGalua(relationsIndirect, rowLabels, xActivity);
+                ShowGalua(relationsIndirect, colLabels, xActivity);
 
                 var c = ReadKey();
                 switch (c.Key)
@@ -199,7 +199,7 @@ namespace RelationsApp
                         break;
                     case ConsoleKey.F:
                         relationsDirect[yCursor].FlipElement(colLabels[xCursor]);
-                        relationsIndirect[xCursor].FlipElement(rowLabels[xCursor]);
+                        relationsIndirect[xCursor].FlipElement(rowLabels[yCursor]);
                         break;
                 }
             }
