@@ -1,0 +1,9 @@
+C:\Users\datde\Repositories\setcalc\Shared\bin\Debug\netstandard2.1\Shared.deps.json
+C:\Users\datde\Repositories\setcalc\Shared\bin\Debug\netstandard2.1\Shared.dll
+C:\Users\datde\Repositories\setcalc\Shared\bin\Debug\netstandard2.1\Shared.pdb
+C:\Users\datde\Repositories\setcalc\Shared\obj\Debug\netstandard2.1\Shared.csprojAssemblyReference.cache
+C:\Users\datde\Repositories\setcalc\Shared\obj\Debug\netstandard2.1\Shared.AssemblyInfoInputs.cache
+C:\Users\datde\Repositories\setcalc\Shared\obj\Debug\netstandard2.1\Shared.AssemblyInfo.cs
+C:\Users\datde\Repositories\setcalc\Shared\obj\Debug\netstandard2.1\Shared.csproj.CoreCompileInputs.cache
+C:\Users\datde\Repositories\setcalc\Shared\obj\Debug\netstandard2.1\Shared.dll
+C:\Users\datde\Repositories\setcalc\Shared\obj\Debug\netstandard2.1\Shared.pdb
