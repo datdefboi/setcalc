@@ -37,7 +37,7 @@ namespace setcalc
         static void Main(string[] args)
         {
             Console.WriteLine("HOW TO USE: insert each numbers separated by space.");
-            
+
             Console.Write("U = ");
             var u = ReadNumbers().Distinct();
 
